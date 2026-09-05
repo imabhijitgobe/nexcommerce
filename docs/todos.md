@@ -166,21 +166,21 @@ Goal: make every machine able to build, test, and review. Install runtimes, conf
 
 ### 1.1 Runtime and package manager
 
-- [ ] P1-001 Check installed Node version against required 18+
+- [x] P1-001 Check installed Node version against required 18+
   Verify: Run `node --version` -> expect `v18.` or `v20.` or `v22.` prefix, no `command not found`
-- [ ] P1-002 Install or upgrade to Node 18 LTS if version check failed
+- [x] P1-002 Install or upgrade to Node 18 LTS if version check failed
   Verify: Run `node --version` -> expect `v18.` or higher, no download errors
-- [ ] P1-003 Verify npm version bundled with Node
+- [x] P1-003 Verify npm version bundled with Node
   Verify: Run `npm --version` -> expect semantic version like `9.` or `10.` with no errors
-- [ ] P1-004 Install pnpm globally if pnpm was chosen in P0-028
+- [x] P1-004 Install pnpm globally if pnpm was chosen in P0-028
   Verify: Run `pnpm --version` -> expect semantic version like `8.` or `9.` with no errors
 - [ ] P1-005 Verify chosen package manager lockfile strategy matches docs
   Verify: Run `ls package-lock.json pnpm-lock.yaml 2>&1 | head -5` -> expect exactly one lockfile matching P0-028 decision
 - [ ] P1-006 Install project dependencies with the chosen package manager
   Verify: Run `ls node_modules/.package-lock.json node_modules/.pnpm-state.json 2>&1 | head -5` -> expect one marker file exists
-- [ ] P1-007 Verify TypeScript compiler is available for type checks
+- [x] P1-007 Verify TypeScript compiler is available for type checks
   Verify: Run `npx tsc --version` -> expect `Version 5.` or higher
-- [ ] P1-008 Verify Prisma CLI is available for schema work in Section 7
+- [x] P1-008 Verify Prisma CLI is available for schema work in Section 7
   Verify: Run `npx prisma --version` -> expect output containing `prisma` and a version number
 
 ### 1.2 Containers and Git config
@@ -191,26 +191,26 @@ Goal: make every machine able to build, test, and review. Install runtimes, conf
   Verify: Run `docker info --format '{{.ServerVersion}}'` -> expect a version string like `24.` or `25.` with no daemon errors
 - [ ] P1-011 Check Docker Compose v2 is available for multi-service setup
   Verify: Run `docker compose version` -> expect `Docker Compose version v2.` or higher
-- [ ] P1-012 Set global git user name for attributable commits
+- [x] P1-012 Set global git user name for attributable commits
   Verify: Run `git config --global user.name` -> expect your full name, non-empty
-- [ ] P1-013 Set global git user email for attributable commits
+- [x] P1-013 Set global git user email for attributable commits
   Verify: Run `git config --global user.email` -> expect a valid email containing `@`
-- [ ] P1-014 Set git default branch to main for new repos per conventions
+- [x] P1-014 Set git default branch to main for new repos per conventions
   Verify: Run `git config --global init.defaultBranch` -> expect `main`
-- [ ] P1-015 Set git pull to rebase to keep history linear per conventions
+- [x] P1-015 Set git pull to rebase to keep history linear per conventions
   Verify: Run `git config --global pull.rebase` -> expect `true`
 - [ ] P1-016 Copy env template to local env file without committing secrets
   Verify: Run `ls -l .env 2>&1 | head -5` -> expect `.env` exists with `-rw-------` or `-rw-r--r--` permissions, see (docs/env.md)
 
 ### 1.3 Editor and verification
 
-- [ ] P1-017 Install ESLint extension for consistent lint feedback in editor
+- [x] P1-017 Install ESLint extension for consistent lint feedback in editor
   Verify: Run `code --list-extensions | grep -i eslint` -> expect `dbaeumer.vscode-eslint` listed
-- [ ] P1-018 Install Prettier extension for consistent formatting in editor
+- [x] P1-018 Install Prettier extension for consistent formatting in editor
   Verify: Run `code --list-extensions | grep -i prettier` -> expect `esbenp.prettier-vscode` listed
-- [ ] P1-019 Install Prisma extension for schema highlighting in Section 7 work
+- [x] P1-019 Install Prisma extension for schema highlighting in Section 7 work
   Verify: Run `code --list-extensions | grep -i prisma` -> expect `prisma.prisma` listed
-- [ ] P1-020 Install Docker extension for container management
+- [x] P1-020 Install Docker extension for container management
   Verify: Run `code --list-extensions | grep -i docker` -> expect `ms-azuretools.vscode-docker` listed
 - [ ] P1-021 Run one-shot version summary to confirm all prerequisites pass
   Verify: Run `node --version && npm --version && docker --version && git --version` -> expect four version lines with no `not found` errors
