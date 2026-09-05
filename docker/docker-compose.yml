@@ -51,7 +51,9 @@ services:
     volumes: [clickhouse_data:/var/lib/clickhouse]
     networks: [nexcommerce-net]
     healthcheck:
-      test: ["CMD-SHELL", "curl -sf http://localhost:8123/ping || exit 1"]
+      # NOTE: clickhouse alpine image has no curl; wget + 127.0.0.1 avoids
+      # localhost resolving to ::1 while the server listens on IPv4 only
+      test: ["CMD-SHELL", "wget -q -O- http://127.0.0.1:8123/ping || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 10

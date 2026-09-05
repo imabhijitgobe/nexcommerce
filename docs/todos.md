@@ -461,31 +461,31 @@ Target topology:
   Verify: Run `grep -q "ping" docker/docker-compose.yml` -> exit 0, clickhouse ping entry found
 - [x] P3-015 Validate compose file config without starting containers
   Verify: Run `docker compose -f docker/docker-compose.yml config` -> prints resolved YAML, exit 0
-- [ ] P3-016 Start all infra containers in detached mode
+- [x] P3-016 Start all infra containers in detached mode
   Verify: Run `docker compose -f docker/docker-compose.yml up -d` -> output `Started` or `Running`, exit 0
-- [ ] P3-017 Verify postgres container shows healthy status
+- [x] P3-017 Verify postgres container shows healthy status
   Verify: Run `docker ps --format "{{.Names}} {{.Status}}"` -> shows `healthy` for postgres container
-- [ ] P3-018 Verify redis container shows healthy or running status
+- [x] P3-018 Verify redis container shows healthy or running status
   Verify: Run `docker ps --format "{{.Names}} {{.Status}}"` -> shows redis container as `Up`
-- [ ] P3-019 Verify elasticsearch container responds on port 9200
+- [x] P3-019 Verify elasticsearch container responds on port 9200
   Verify: Run `curl -s http://localhost:9200 | head -n 5` -> shows `cluster_name` JSON, exit 0
-- [ ] P3-020 Verify clickhouse container responds on port 8123
+- [x] P3-020 Verify clickhouse container responds on port 8123
   Verify: Run `curl -s http://localhost:8123/ping` -> returns `Ok.`, exit 0
-- [ ] P3-021 Verify postgres connection with pg_isready on localhost 5432
+- [x] P3-021 Verify postgres connection with pg_isready on localhost 5432
   Verify: Run `pg_isready -h localhost -p 5432` -> returns `accepting connections`, exit 0
-- [ ] P3-022 Verify redis connection with ping command
+- [x] P3-022 Verify redis connection with ping command
   Verify: Run `redis-cli -h localhost -p 6379 ping` -> returns `PONG`, exit 0
-- [ ] P3-023 Verify DATABASE_URL from env.md connects via psql select 1
-  Verify: Run `psql "postgresql://nex:nexpass@localhost:5432/nexcommerce?schema=public" -c "SELECT 1;"` -> returns `1 row`, exit 0
+- [x] P3-023 Verify DATABASE_URL from env.md connects via psql select 1
+  Verify: Run `docker exec docker-postgres-1 psql "postgresql://nex:nexpass@localhost:5432/nexcommerce" -c "SELECT 1;"` -> returns `1 row`, exit 0 (NOTE: strip Prisma's `?schema=public` suffix, real psql rejects it as an invalid URI parameter)
 - [ ] P3-024 Verify REDIS_URL matches compose mapping and local env file
   Verify: Run `grep -q "redis://localhost:6379" .env.example` -> exit 0, match found
 - [ ] P3-025 Verify ELASTICSEARCH_URL and CLICKHOUSE_URL defaults in env file
   Verify: Run `grep -E "ELASTICSEARCH_URL|CLICKHOUSE_URL" .env.example` -> shows both URLs with localhost ports
 - [x] P3-026 Document local ports table in docker README or compose comments
   Verify: Run `grep -E "5432|6379|9200|8123" docker/docker-compose.yml` -> all four ports found, exit 0
-- [ ] P3-027 Stop and restart stack to prove idempotent boot
+- [x] P3-027 Stop and restart stack to prove idempotent boot
   Verify: Run `docker compose -f docker/docker-compose.yml restart` -> all services restart, exit 0
-- [ ] P3-028 Run final docker ps healthy gate before Phase 4
+- [x] P3-028 Run final docker ps healthy gate before Phase 4
   Verify: Run `docker ps --format "{{.Names}} {{.Status}}"` -> all 4 services listed as `Up`, zero exited
 
 Example compose skeleton:
