@@ -1,0 +1,73 @@
+# NexCommerce local infrastructure (Phase 3, todos P3-001..P3-014)
+# Services: postgres+postgis 5432, redis 6379, elasticsearch 9200, clickhouse 8123
+# Matches docs/env.md defaults. Local dev only, never production endpoints.
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    ports: ["5432:5432"]
+    environment:
+      POSTGRES_USER: nex
+      POSTGRES_PASSWORD: nexpass
+      POSTGRES_DB: nexcommerce
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    networks: [nexcommerce-net]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nex -d nexcommerce"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+    volumes: [redis_data:/data]
+    networks: [nexcommerce-net]
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  elasticsearch:
+    image: elasticsearch:8.15.0
+    ports: ["9200:9200"]
+    environment:
+      discovery.type: single-node
+      # alt env-file form: discovery.type=single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes: [elasticsearch_data:/usr/share/elasticsearch/data]
+    networks: [nexcommerce-net]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24-alpine
+    ports: ["8123:8123", "9000:9000"]
+    volumes: [clickhouse_data:/var/lib/clickhouse]
+    networks: [nexcommerce-net]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8123/ping || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data: {}
+  redis_data: {}
+  elasticsearch_data: {}
+  clickhouse_data: {}
+
+networks:
+  nexcommerce-net:
+    driver: bridge
+
+# Local ports table (P3-026):
+# postgres 5432 -> DATABASE_URL=postgresql://nex:nexpass@localhost:5432/nexcommerce?schema=public
+# redis 6379 -> REDIS_URL=redis://localhost:6379
+# elasticsearch 9200 -> ELASTICSEARCH_URL=http://localhost:9200
+# clickhouse 8123 -> CLICKHOUSE_URL=http://localhost:8123

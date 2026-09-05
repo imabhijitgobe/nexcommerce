@@ -185,7 +185,7 @@ Goal: make every machine able to build, test, and review. Install runtimes, conf
 
 ### 1.2 Containers and Git config
 
-- [ ] P1-009 Check Docker engine is installed for local Postgres and services
+- [x] P1-009 Check Docker engine is installed for local Postgres and services
   Verify: Run `docker --version` -> expect `Docker version 24.` or `25.` or higher
 - [ ] P1-010 Verify Docker daemon is running and responsive
   Verify: Run `docker info --format '{{.ServerVersion}}'` -> expect a version string like `24.` or `25.` with no daemon errors
@@ -431,35 +431,35 @@ Target topology:
 | elasticsearch | elasticsearch:8.x | 9200 | ELASTICSEARCH_URL |
 | clickhouse | clickhouse/clickhouse-server | 8123 | CLICKHOUSE_URL |
 
-- [ ] P3-001 Create docker directory and empty docker-compose.yml header
+- [x] P3-001 Create docker directory and empty docker-compose.yml header
   Verify: Run `test -f docker/docker-compose.yml && head -n 10 docker/docker-compose.yml` -> shows `services:` key, exit 0
-- [ ] P3-002 Add postgres with PostGIS image and port 5432 to compose file
+- [x] P3-002 Add postgres with PostGIS image and port 5432 to compose file
   Verify: Run `grep -q "postgis" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-003 Add redis service with port 6379 to compose file
+- [x] P3-003 Add redis service with port 6379 to compose file
   Verify: Run `grep -q "redis:" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-004 Add elasticsearch or opensearch service with port 9200 to compose file
+- [x] P3-004 Add elasticsearch or opensearch service with port 9200 to compose file
   Verify: Run `grep -q "9200" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-005 Add clickhouse service with HTTP port 8123 to compose file
+- [x] P3-005 Add clickhouse service with HTTP port 8123 to compose file
   Verify: Run `grep -q "8123" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-006 Define named volume for postgres data
+- [x] P3-006 Define named volume for postgres data
   Verify: Run `grep -q "postgres_data" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-007 Define named volumes for redis elasticsearch and clickhouse
+- [x] P3-007 Define named volumes for redis elasticsearch and clickhouse
   Verify: Run `grep -q "volumes:" docker/docker-compose.yml` -> exit 0, at least 3 volume entries shown
-- [ ] P3-008 Define single bridge network nexcommerce-net for all services
+- [x] P3-008 Define single bridge network nexcommerce-net for all services
   Verify: Run `grep -q "nexcommerce-net" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-009 Set postgres env POSTGRES_USER PASSWORD DB matching env.md
+- [x] P3-009 Set postgres env POSTGRES_USER PASSWORD DB matching env.md
   Verify: Run `grep -q "POSTGRES_PASSWORD" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-010 Set discovery single-node for local elasticsearch
+- [x] P3-010 Set discovery single-node for local elasticsearch
   Verify: Run `grep -q "discovery.type=single-node" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-011 Add healthcheck for postgres using pg_isready
+- [x] P3-011 Add healthcheck for postgres using pg_isready
   Verify: Run `grep -q "pg_isready" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-012 Add healthcheck for redis using redis-cli ping
+- [x] P3-012 Add healthcheck for redis using redis-cli ping
   Verify: Run `grep -q "redis-cli ping" docker/docker-compose.yml` -> exit 0, match found
-- [ ] P3-013 Add healthcheck for elasticsearch via curl localhost 9200
+- [x] P3-013 Add healthcheck for elasticsearch via curl localhost 9200
   Verify: Run `grep -q "healthcheck:" docker/docker-compose.yml` -> exit 0, at least 2 healthchecks present
-- [ ] P3-014 Add healthcheck for clickhouse via curl ping on 8123
+- [x] P3-014 Add healthcheck for clickhouse via curl ping on 8123
   Verify: Run `grep -q "ping" docker/docker-compose.yml` -> exit 0, clickhouse ping entry found
-- [ ] P3-015 Validate compose file config without starting containers
+- [x] P3-015 Validate compose file config without starting containers
   Verify: Run `docker compose -f docker/docker-compose.yml config` -> prints resolved YAML, exit 0
 - [ ] P3-016 Start all infra containers in detached mode
   Verify: Run `docker compose -f docker/docker-compose.yml up -d` -> output `Started` or `Running`, exit 0
@@ -481,7 +481,7 @@ Target topology:
   Verify: Run `grep -q "redis://localhost:6379" .env.example` -> exit 0, match found
 - [ ] P3-025 Verify ELASTICSEARCH_URL and CLICKHOUSE_URL defaults in env file
   Verify: Run `grep -E "ELASTICSEARCH_URL|CLICKHOUSE_URL" .env.example` -> shows both URLs with localhost ports
-- [ ] P3-026 Document local ports table in docker README or compose comments
+- [x] P3-026 Document local ports table in docker README or compose comments
   Verify: Run `grep -E "5432|6379|9200|8123" docker/docker-compose.yml` -> all four ports found, exit 0
 - [ ] P3-027 Stop and restart stack to prove idempotent boot
   Verify: Run `docker compose -f docker/docker-compose.yml restart` -> all services restart, exit 0
