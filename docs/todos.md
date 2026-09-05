@@ -91,11 +91,11 @@ Goal: establish a clean, reviewable baseline. Decide what to do about any delete
 
 ### 0.1 Inspect current repo state
 
-- [ ] P0-001 Run git status to inspect working tree for unexpected changes
+- [x] P0-001 Run git status to inspect working tree for unexpected changes
   Verify: Run `git status --porcelain` -> expect empty output or a short known list with no untracked secrets
-- [ ] P0-002 Show recent commits to understand current history
+- [x] P0-002 Show recent commits to understand current history
   Verify: Run `git log --oneline -10` -> expect 1-10 lines of history with hashes and messages, no errors
-- [ ] P0-003 List all local branches to confirm baseline branching state
+- [x] P0-003 List all local branches to confirm baseline branching state
   Verify: Run `git branch --list` -> expect at least `main` or `master` listed with `*` on current branch
 - [ ] P0-004 List remote branches to confirm what exists on origin
   Verify: Run `git branch -r` -> expect `origin/main` or `origin/master` listed, no fetch errors
@@ -110,24 +110,24 @@ Goal: establish a clean, reviewable baseline. Decide what to do about any delete
 
 ### 0.2 Scaffold deletion decision
 
-- [ ] P0-009 Check for deleted scaffold files versus HEAD to scope the decision
+- [x] P0-009 Check for deleted scaffold files versus HEAD to scope the decision
   Verify: Run `git status --porcelain | head -40` -> expect visible D entries if scaffold was deleted, else empty
-- [ ] P0-010 Show staged and unstaged diff stat to quantify deletions
+- [x] P0-010 Show staged and unstaged diff stat to quantify deletions
   Verify: Run `git diff --stat HEAD | tail -20` -> expect file list with insertions and deletions summary, no errors
-- [ ] P0-011 List top-level directory to confirm what scaffold remains on disk
+- [x] P0-011 List top-level directory to confirm what scaffold remains on disk
   Verify: Run `ls -la | head -40` -> expect entries for `.git`, `docs`, and any remaining app files
-- [ ] P0-012 Create decision note choosing restore deleted scaffold vs re-scaffold from scratch
+- [x] P0-012 Create decision note choosing restore deleted scaffold vs re-scaffold from scratch
   Verify: Run `ls /tmp/opencode/nex-decision.txt && cat /tmp/opencode/nex-decision.txt` -> expect one line containing either `restore` or `re-scaffold`
-- [ ] P0-013 Record scaffold decision and rationale in docs/progress.md M0 section
+- [x] P0-013 Record scaffold decision and rationale in docs/progress.md M0 section
   Verify: Run `grep -n "restore\|re-scaffold" docs/progress.md | head -10` -> expect at least one match for the chosen option
 
 ### 0.3 Branching and protection setup
 
-- [ ] P0-014 Create develop branch from main if it does not exist yet
+- [x] P0-014 Create develop branch from main if it does not exist yet
   Verify: Run `git branch --list develop` -> expect output line `  develop` or `* develop`
 - [ ] P0-015 Push develop to origin to establish the integration branch
   Verify: Run `git ls-remote --heads origin develop` -> expect one line with hash and `refs/heads/develop`
-- [ ] P0-016 Set develop as the working branch for this chunk
+- [x] P0-016 Set develop as the working branch for this chunk
   Verify: Run `git rev-parse --abbrev-ref HEAD` -> expect `develop`
 - [ ] P0-017 Verify main branch protection requires PR reviews before merge
   Verify: Run `gh api repos/{owner}/{repo}/branches/main/protection --jq .required_pull_request_reviews.required_approving_review_count` -> expect `1` or greater
@@ -136,9 +136,9 @@ Goal: establish a clean, reviewable baseline. Decide what to do about any delete
 
 ### 0.4 Commit docs baseline
 
-- [ ] P0-019 Stage docs directory on develop for the baseline PR
+- [x] P0-019 Stage docs directory on develop for the baseline PR
   Verify: Run `git status --porcelain docs | head -20` -> expect M or A entries for docs files, no secrets listed
-- [ ] P0-020 Commit docs baseline with a conventional message per git conventions
+- [x] P0-020 Commit docs baseline with a conventional message per git conventions
   Verify: Run `git log --oneline -1` -> expect message starting with `docs:` and mentioning baseline
 - [ ] P0-021 Push docs baseline branch to origin for review
   Verify: Run `git ls-remote --heads origin chore/P0-docs-baseline` -> expect one line with hash and branch ref, or use your actual branch name
@@ -149,15 +149,15 @@ Goal: establish a clean, reviewable baseline. Decide what to do about any delete
 
 ### 0.5 Stack and tooling decisions
 
-- [ ] P0-024 Compare Express-monolith vs Next.js options against modular monolith ADR
+- [x] P0-024 Compare Express-monolith vs Next.js options against modular monolith ADR
   Verify: Run `grep -n "ADR-001\|modular monolith\|Express\|Next.js" docs/architecture.md | head -20` -> expect ADR-001 and monolith rationale lines
-- [ ] P0-025 Record explicit backend stack decision as Express-monolith or Next.js in progress M0
+- [x] P0-025 Record explicit backend stack decision as Express-monolith or Next.js in progress M0
   Verify: Run `grep -n "Backend decision:\|Express-monolith\|Next.js" docs/progress.md | head -10` -> expect one explicit decision line
-- [ ] P0-026 Record Prisma schema source of truth reference for the chosen stack
+- [x] P0-026 Record Prisma schema source of truth reference for the chosen stack
   Verify: Run `grep -n "S7\|Prisma\|schema" docs/architecture.md | head -10` -> expect Section 7 Prisma schema references
-- [ ] P0-027 Compare pnpm vs npm for package manager using install speed and lockfile review
+- [x] P0-027 Compare pnpm vs npm for package manager using install speed and lockfile review
   Verify: Run `grep -n "pnpm\|npm" docs/architecture.md docs/env.md | head -20` -> expect at least one match guiding the choice
-- [ ] P0-028 Record explicit package manager decision as pnpm or npm in progress M0
+- [x] P0-028 Record explicit package manager decision as pnpm or npm in progress M0
   Verify: Run `grep -n "Package manager decision:\|pnpm\|npm" docs/progress.md | head -10` -> expect one explicit decision line
 
 ## Phase 1 - Prerequisites and Conventions
