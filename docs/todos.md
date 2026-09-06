@@ -174,9 +174,9 @@ Goal: make every machine able to build, test, and review. Install runtimes, conf
   Verify: Run `npm --version` -> expect semantic version like `9.` or `10.` with no errors
 - [x] P1-004 Install pnpm globally if pnpm was chosen in P0-028
   Verify: Run `pnpm --version` -> expect semantic version like `8.` or `9.` with no errors
-- [ ] P1-005 Verify chosen package manager lockfile strategy matches docs
+- [x] P1-005 Verify chosen package manager lockfile strategy matches docs
   Verify: Run `ls package-lock.json pnpm-lock.yaml 2>&1 | head -5` -> expect exactly one lockfile matching P0-028 decision
-- [ ] P1-006 Install project dependencies with the chosen package manager
+- [x] P1-006 Install project dependencies with the chosen package manager
   Verify: Run `ls node_modules/.package-lock.json node_modules/.pnpm-state.json 2>&1 | head -5` -> expect one marker file exists
 - [x] P1-007 Verify TypeScript compiler is available for type checks
   Verify: Run `npx tsc --version` -> expect `Version 5.` or higher
@@ -242,17 +242,17 @@ Expected end state:
 
 Decide first. Do not scaffold blindly over restorable history.
 
-- [ ] P2-001 Check git history for prior scaffold commits
+- [x] P2-001 Check git history for prior scaffold commits
   Verify: Run `git log --oneline -10` -> shows HEAD history or `fatal: no commits` if empty repo
-- [ ] P2-002 Check working tree status for existing scaffold files
+- [x] P2-002 Check working tree status for existing scaffold files
   Verify: Run `git status --short` -> lists modified/untracked files or empty output if clean
-- [ ] P2-003 List tracked files to detect prior backend scaffold
+- [x] P2-003 List tracked files to detect prior backend scaffold
   Verify: Run `git ls-files | head -n 50` -> shows tracked paths or empty if nothing committed
-- [ ] P2-004 Inspect docs inputs required by scaffold
+- [x] P2-004 Inspect docs inputs required by scaffold
   Verify: Run `ls docs/architecture.md docs/env.md docs/git-conventions.md` -> all three paths echoed, no missing file error
-- [ ] P2-005 Record restore-vs-fresh decision in a scratch note
+- [x] P2-005 Record restore-vs-fresh decision in a scratch note
   Verify: Run `echo $SCHAFFOLD_MODE` -> outputs `restore` or `fresh` with no empty value
-- [ ] P2-006 Restore tracked scaffold files if mode is restore
+- [x] P2-006 Restore tracked scaffold files if mode is restore
   Verify: Run `git restore --staged . && git status --short` -> working tree matches HEAD, no unexpected deletions
 
 Decision rule:
@@ -268,37 +268,37 @@ else:
 
 One task per file. Keep each diff small and verifiable.
 
-- [ ] P2-007 Initialize backend package.json when mode is fresh
+- [x] P2-007 Initialize backend package.json when mode is fresh
   Verify: Run `test -f package.json && node -e "console.log(require('./package.json').name)"` -> prints package name, no ENOENT
-- [ ] P2-008 Add dev script to package.json
+- [x] P2-008 Add dev script to package.json
   Verify: Run `node -e "console.log(require('./package.json').scripts.dev)"` -> prints `tsx watch src/server.ts` or equivalent
-- [ ] P2-009 Add build script to package.json
+- [x] P2-009 Add build script to package.json
   Verify: Run `node -e "console.log(require('./package.json').scripts.build)"` -> prints `tsc -p tsconfig.build.json`
-- [ ] P2-010 Add test script to package.json
+- [x] P2-010 Add test script to package.json
   Verify: Run `node -e "console.log(require('./package.json').scripts.test)"` -> prints `jest --runInBand`
-- [ ] P2-011 Add lint script to package.json
+- [x] P2-011 Add lint script to package.json
   Verify: Run `node -e "console.log(require('./package.json').scripts.lint)"` -> prints `eslint src --ext .ts`
-- [ ] P2-012 Add typecheck and format scripts to package.json
+- [x] P2-012 Add typecheck and format scripts to package.json
   Verify: Run `node -e "console.log(require('./package.json').scripts.typecheck)"` -> prints `tsc --noEmit`
-- [ ] P2-013 Install runtime deps express cors helmet morgan dotenv
+- [x] P2-013 Install runtime deps express cors helmet morgan dotenv
   Verify: Run `npm ls express cors helmet morgan dotenv` -> all listed with versions, no `missing` marker
-- [ ] P2-014 Install dev deps typescript tsx jest eslint zod prisma
+- [x] P2-014 Install dev deps typescript tsx jest eslint zod prisma
   Verify: Run `npm ls -D typescript tsx jest eslint zod` -> all listed with versions, no `missing` marker
-- [ ] P2-015 Create tsconfig.json with strict mode and src include
+- [x] P2-015 Create tsconfig.json with strict mode and src include
   Verify: Run `npx tsc --showConfig | head -n 20` -> shows `strict: true` and `include: src`
-- [ ] P2-016 Create tsconfig.build.json extending base without tests
+- [x] P2-016 Create tsconfig.build.json extending base without tests
   Verify: Run `test -f tsconfig.build.json && cat tsconfig.build.json` -> shows `extends` plus `exclude` for tests
-- [ ] P2-017 Create eslint config for TypeScript
+- [x] P2-017 Create eslint config for TypeScript
   Verify: Run `npx eslint --print-config src/app.ts | head -n 10` -> prints resolved config JSON, exit 0
-- [ ] P2-018 Create prettier config with singleQuote and trailingComma
+- [x] P2-018 Create prettier config with singleQuote and trailingComma
   Verify: Run `test -f .prettierrc && cat .prettierrc` -> shows `singleQuote` key, exit 0
-- [ ] P2-019 Create jest.config.js with ts-jest and tests match
+- [x] P2-019 Create jest.config.js with ts-jest and tests match
   Verify: Run `npx jest --showConfig | head -n 30` -> shows `rootDir` and `testMatch`, exit 0
-- [ ] P2-020 Create .gitignore for node_modules dist env and client build
+- [x] P2-020 Create .gitignore for node_modules dist env and client build
   Verify: Run `cat .gitignore` -> contains `node_modules`, `dist`, `.env`, `.next`
 - [x] P2-021 Create .env.example from normative template
   Verify: Run `test -f .env.example && grep -c DATABASE_URL .env.example` -> prints count `1` or more
-- [ ] P2-022 Create README.md with setup steps pointer to docs
+- [x] P2-022 Create README.md with setup steps pointer to docs
   Verify: Run `test -f README.md && head -n 5 README.md` -> shows project title, exit 0
 
 Reference scripts block (docs/architecture.md S16):
@@ -334,39 +334,39 @@ CLICKHOUSE_URL=http://localhost:8123
 
 Create only top-level files and empty dirs here. No business logic. Module internals are Phase 5.
 
-- [ ] P2-023 Create src directory
+- [x] P2-023 Create src directory
   Verify: Run `test -d src && ls src` -> directory exists, exit 0
-- [ ] P2-024 Create src/app.ts exporting Express app without listen
+- [x] P2-024 Create src/app.ts exporting Express app without listen
   Verify: Run `test -f src/app.ts && grep -q "export" src/app.ts` -> exit 0, match found
-- [ ] P2-025 Create src/server.ts importing app and listening on PORT
+- [x] P2-025 Create src/server.ts importing app and listening on PORT
   Verify: Run `test -f src/server.ts && grep -q "listen" src/server.ts` -> exit 0, match found
-- [ ] P2-026 Create src/config directory
+- [x] P2-026 Create src/config directory
   Verify: Run `test -d src/config && ls src/config` -> directory exists, exit 0
-- [ ] P2-027 Create src/config/env.ts with Zod fail-fast schema
+- [x] P2-027 Create src/config/env.ts with Zod fail-fast schema
   Verify: Run `test -f src/config/env.ts && grep -q "z.object" src/config/env.ts` -> exit 0, match found
-- [ ] P2-028 Create src/config/logger.config.ts with pino/winston stub
+- [x] P2-028 Create src/config/logger.config.ts with pino/winston stub
   Verify: Run `test -f src/config/logger.config.ts && ls -l src/config/logger.config.ts` -> file exists with size > 0
-- [ ] P2-029 Create src/config/database.config.ts exporting Prisma client singleton
+- [x] P2-029 Create src/config/database.config.ts exporting Prisma client singleton
   Verify: Run `test -f src/config/database.config.ts && grep -q "PrismaClient" src/config/database.config.ts` -> exit 0
-- [ ] P2-030 Create src/config/redis.config.ts with REDIS_URL connection stub
+- [x] P2-030 Create src/config/redis.config.ts with REDIS_URL connection stub
   Verify: Run `test -f src/config/redis.config.ts && grep -q "REDIS_URL" src/config/redis.config.ts` -> exit 0
-- [ ] P2-031 Create src/config/elasticsearch.config.ts with ELASTICSEARCH_URL stub
+- [x] P2-031 Create src/config/elasticsearch.config.ts with ELASTICSEARCH_URL stub
   Verify: Run `test -f src/config/elasticsearch.config.ts && grep -q "ELASTICSEARCH_URL" src/config/elasticsearch.config.ts` -> exit 0
-- [ ] P2-032 Create src/config/pinecone.config.ts with PINECONE_API_KEY stub
+- [x] P2-032 Create src/config/pinecone.config.ts with PINECONE_API_KEY stub
   Verify: Run `test -f src/config/pinecone.config.ts && grep -q "PINECONE" src/config/pinecone.config.ts` -> exit 0
-- [ ] P2-033 Create src/shared directory with .gitkeep
+- [x] P2-033 Create src/shared directory with .gitkeep
   Verify: Run `test -d src/shared && ls src/shared` -> shows `.gitkeep`, exit 0
-- [ ] P2-034 Create src/infrastructure directory with .gitkeep
+- [x] P2-034 Create src/infrastructure directory with .gitkeep
   Verify: Run `test -d src/infrastructure && ls src/infrastructure` -> shows `.gitkeep`, exit 0
-- [ ] P2-035 Create src/modules directory with .gitkeep placeholder only
+- [x] P2-035 Create src/modules directory with .gitkeep placeholder only
   Verify: Run `test -d src/modules && ls src/modules` -> shows `.gitkeep`, no per-module code yet
-- [ ] P2-036 Create src/types/express.d.ts for Request augmentation
+- [x] P2-036 Create src/types/express.d.ts for Request augmentation
   Verify: Run `test -f src/types/express.d.ts && cat src/types/express.d.ts` -> file exists, non-empty
-- [ ] P2-037 Create src/types/global.d.ts for global declarations
+- [x] P2-037 Create src/types/global.d.ts for global declarations
   Verify: Run `test -f src/types/global.d.ts && cat src/types/global.d.ts` -> file exists, non-empty
-- [ ] P2-038 Create prisma directory with schema.prisma stub datasource
+- [x] P2-038 Create prisma directory with schema.prisma stub datasource
   Verify: Run `test -f prisma/schema.prisma && grep -q "datasource db" prisma/schema.prisma` -> exit 0
-- [ ] P2-039 Create tests directories unit integration e2e with setup.ts
+- [x] P2-039 Create tests directories unit integration e2e with setup.ts
   Verify: Run `ls tests/unit tests/integration tests/e2e tests/setup.ts` -> all paths listed, no missing error
 
 Minimal app.ts shape:
