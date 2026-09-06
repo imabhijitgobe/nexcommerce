@@ -218,8 +218,8 @@ Goal: make every machine able to build, test, and review. Install runtimes, conf
   Verify: Run `git remote -v | head -5` -> expect `origin` fetch and push URLs for the NexCommerce repo
 - [x] P1-023 Verify develop is up to date with origin before starting next chunk
   Verify: Run `git status -sb | head -2` -> expect `## develop...origin/develop` with no `ahead` or `behind` count
-- [ ] P1-024 Update progress milestones M0 and M1 as done in the same PR
-  Verify: Run `grep -n "M0.*done\|M1.*done\|M0.*complete\|M1.*complete" docs/progress.md | head -10` -> expect M0 and M1 marked done or complete
+- [x] P1-024 Update progress milestones M0 and M1 as done in the same PR
+  Verify: Run `grep -in "M0.*done\|M1.*done\|M0.*complete\|M1.*complete" docs/progress.md | head -10` -> expect M0 and M1 marked done or complete (case-insensitive; table uses Done)
 
 ## Phase 2 - Scaffold Restore or Create (Backend + Storefront)
 

@@ -38,7 +38,7 @@ Progress bar scale (ASCII only, always renders):
 | 11 | Analytics | Planned | [----------] 0% | 0/4 | US-056..US-059, FR-051..FR-055 |
 | 12 | AI | Planned | [----------] 0% | 0/6 | US-060..US-065, FR-056..FR-060 |
 | 13 | Admin | Planned | [----------] 0% | 0/5 | US-066..US-070, FR-061..FR-065 |
-| — | Frontend scaffold (Next.js) | Blocked | [----------] 0% | — | 2 commits exist but scaffold files deleted in working tree — needs restore (see Risks) |
+| — | Frontend scaffold (Next.js) | Done | [==========] 100% | — | Fresh Next.js 16 storefront in nexcommerce/client + Express scaffold, probe green |
 | — | Infra & CI | Planned | [----------] 0% | — | ECS, RDS, Redis, ES, Husky/commitlint, Actions per git-conventions |
 
 **Totals:** Stories 0/70 done. FRs 0/65 done. Implementation 0%. Docs 100%.
@@ -55,7 +55,7 @@ Progress bar scale (ASCII only, always renders):
 | Milestone | Scope | Status | Target |
 | :--- | :--- | :---: | :--- |
 | M0 Docs & contracts | PRD, Arch, API, UI flows, errors, env, git conventions | Done | 2026-09-05 |
-| M1 Re-scaffold | Fresh git init in nexcommerce, Express monolith + storefront scaffold, `dev` green | Planned | next |
+| M1 Re-scaffold | Fresh git init in nexcommerce, Express monolith + storefront scaffold, `dev` green | Done | 2026-09-06 |
 | M2 Auth + User | JWT/refresh, OAuth, RBAC, profiles, addresses | Planned | MVP |
 | M3 Vendor + Product | KYC state machine, store, catalog, variants, inventory locks, images | Planned | MVP |
 | M4 Search | ES + Pinecone hybrid, facets, autocomplete | Planned | MVP |
