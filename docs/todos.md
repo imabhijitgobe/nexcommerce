@@ -398,11 +398,11 @@ export const env = envSchema.parse(process.env);
 
 ### 2.4 Storefront client and support dirs
 
-- [ ] P2-040 Scaffold Next.js storefront client in client directory
+- [x] P2-040 Scaffold Next.js storefront client in client directory
   Verify: Run `test -f client/package.json && cat client/package.json` -> shows `next` dependency, exit 0
-- [ ] P2-041 Create docker scripts and workflows placeholder dirs
+- [x] P2-041 Create docker scripts and workflows placeholder dirs
   Verify: Run `ls docker scripts .github/workflows 2>&1 | head -n 20` -> dirs listed or created with `.gitkeep`
-- [ ] P2-042 Boot backend dev server and hit live probe
+- [x] P2-042 Boot backend dev server and hit live probe
   Verify: Run `npm run dev & sleep 5; curl -s http://localhost:5000/health/live` -> returns `{"ok":true}`, then kill dev process
 
 Boot notes:
