@@ -189,7 +189,7 @@ Goal: make every machine able to build, test, and review. Install runtimes, conf
   Verify: Run `docker --version` -> expect `Docker version 24.` or `25.` or higher
 - [ ] P1-010 Verify Docker daemon is running and responsive
   Verify: Run `docker info --format '{{.ServerVersion}}'` -> expect a version string like `24.` or `25.` with no daemon errors
-- [ ] P1-011 Check Docker Compose v2 is available for multi-service setup
+- [x] P1-011 Check Docker Compose v2 is available for multi-service setup
   Verify: Run `docker compose version` -> expect `Docker Compose version v2.` or higher
 - [x] P1-012 Set global git user name for attributable commits
   Verify: Run `git config --global user.name` -> expect your full name, non-empty
