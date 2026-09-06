@@ -199,7 +199,7 @@ Goal: make every machine able to build, test, and review. Install runtimes, conf
   Verify: Run `git config --global init.defaultBranch` -> expect `main`
 - [x] P1-015 Set git pull to rebase to keep history linear per conventions
   Verify: Run `git config --global pull.rebase` -> expect `true`
-- [ ] P1-016 Copy env template to local env file without committing secrets
+- [x] P1-016 Copy env template to local env file without committing secrets
   Verify: Run `ls -l .env 2>&1 | head -5` -> expect `.env` exists with `-rw-------` or `-rw-r--r--` permissions, see (docs/env.md)
 
 ### 1.3 Editor and verification
@@ -296,7 +296,7 @@ One task per file. Keep each diff small and verifiable.
   Verify: Run `npx jest --showConfig | head -n 30` -> shows `rootDir` and `testMatch`, exit 0
 - [ ] P2-020 Create .gitignore for node_modules dist env and client build
   Verify: Run `cat .gitignore` -> contains `node_modules`, `dist`, `.env`, `.next`
-- [ ] P2-021 Create .env.example from normative template
+- [x] P2-021 Create .env.example from normative template
   Verify: Run `test -f .env.example && grep -c DATABASE_URL .env.example` -> prints count `1` or more
 - [ ] P2-022 Create README.md with setup steps pointer to docs
   Verify: Run `test -f README.md && head -n 5 README.md` -> shows project title, exit 0
@@ -477,9 +477,9 @@ Target topology:
   Verify: Run `redis-cli -h localhost -p 6379 ping` -> returns `PONG`, exit 0
 - [x] P3-023 Verify DATABASE_URL from env.md connects via psql select 1
   Verify: Run `docker exec docker-postgres-1 psql "postgresql://nex:nexpass@localhost:5432/nexcommerce" -c "SELECT 1;"` -> returns `1 row`, exit 0 (NOTE: strip Prisma's `?schema=public` suffix, real psql rejects it as an invalid URI parameter)
-- [ ] P3-024 Verify REDIS_URL matches compose mapping and local env file
+- [x] P3-024 Verify REDIS_URL matches compose mapping and local env file
   Verify: Run `grep -q "redis://localhost:6379" .env.example` -> exit 0, match found
-- [ ] P3-025 Verify ELASTICSEARCH_URL and CLICKHOUSE_URL defaults in env file
+- [x] P3-025 Verify ELASTICSEARCH_URL and CLICKHOUSE_URL defaults in env file
   Verify: Run `grep -E "ELASTICSEARCH_URL|CLICKHOUSE_URL" .env.example` -> shows both URLs with localhost ports
 - [x] P3-026 Document local ports table in docker README or compose comments
   Verify: Run `grep -E "5432|6379|9200|8123" docker/docker-compose.yml` -> all four ports found, exit 0
@@ -581,7 +581,7 @@ Scope: server, data stores, auth, OAuth, AI, payments, messaging, maps/AWS, obse
   Verify: Run `grep LOG_LEVEL .env.example` -> shows LOG_LEVEL entry
 - [ ] P4-015 Set feature-flag and tuning group ENABLE_SEMANTIC_SEARCH CART_TTL_MIN per (docs/env.md S10)
   Verify: Run `grep ENABLE_SEMANTIC_SEARCH .env.example` -> shows flag entry
-- [ ] P4-016 Verify .env.example template has all groups with placeholder values per (docs/env.md S13)
+- [x] P4-016 Verify .env.example template has all groups with placeholder values per (docs/env.md S13)
   Verify: Run `test -f .env.example && grep -c "=" .env.example` -> count 25 or more lines with =
 - [ ] P4-017 Verify src/config/env.ts Zod schema validates every .env.example key per (docs/env.md S12)
   Verify: Run `test -f src/config/env.ts && grep -q "z.object" src/config/env.ts` -> exit 0
