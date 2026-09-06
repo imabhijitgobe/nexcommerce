@@ -97,7 +97,7 @@ Goal: establish a clean, reviewable baseline. Decide what to do about any delete
   Verify: Run `git log --oneline -10` -> expect 1-10 lines of history with hashes and messages, no errors
 - [x] P0-003 List all local branches to confirm baseline branching state
   Verify: Run `git branch --list` -> expect at least `main` or `master` listed with `*` on current branch
-- [ ] P0-004 List remote branches to confirm what exists on origin
+- [x] P0-004 List remote branches to confirm what exists on origin
   Verify: Run `git branch -r` -> expect `origin/main` or `origin/master` listed, no fetch errors
 - [x] P0-005 List docs directory to confirm all spec files are present
   Verify: Run `ls docs` -> expect `prd.md architecture.md api.md ui-flows.md error-codes.md env.md git-conventions.md progress.md`
@@ -125,13 +125,13 @@ Goal: establish a clean, reviewable baseline. Decide what to do about any delete
 
 - [x] P0-014 Create develop branch from main if it does not exist yet
   Verify: Run `git branch --list develop` -> expect output line `  develop` or `* develop`
-- [ ] P0-015 Push develop to origin to establish the integration branch
+- [x] P0-015 Push develop to origin to establish the integration branch
   Verify: Run `git ls-remote --heads origin develop` -> expect one line with hash and `refs/heads/develop`
 - [x] P0-016 Set develop as the working branch for this chunk
   Verify: Run `git rev-parse --abbrev-ref HEAD` -> expect `develop`
-- [ ] P0-017 Verify main branch protection requires PR reviews before merge
+- [x] P0-017 Verify main branch protection requires PR reviews before merge
   Verify: Run `gh api repos/{owner}/{repo}/branches/main/protection --jq .required_pull_request_reviews.required_approving_review_count` -> expect `1` or greater
-- [ ] P0-018 Verify develop branch protection requires PR reviews before merge
+- [x] P0-018 Verify develop branch protection requires PR reviews before merge
   Verify: Run `gh api repos/{owner}/{repo}/branches/develop/protection --jq .required_pull_request_reviews.required_approving_review_count` -> expect `1` or greater
 
 ### 0.4 Commit docs baseline
@@ -214,9 +214,9 @@ Goal: make every machine able to build, test, and review. Install runtimes, conf
   Verify: Run `code --list-extensions | grep -i docker` -> expect `ms-azuretools.vscode-docker` listed
 - [ ] P1-021 Run one-shot version summary to confirm all prerequisites pass
   Verify: Run `node --version && npm --version && docker --version && git --version` -> expect four version lines with no `not found` errors
-- [ ] P1-022 Verify git remotes point to the correct NexCommerce origin
+- [x] P1-022 Verify git remotes point to the correct NexCommerce origin
   Verify: Run `git remote -v | head -5` -> expect `origin` fetch and push URLs for the NexCommerce repo
-- [ ] P1-023 Verify develop is up to date with origin before starting next chunk
+- [x] P1-023 Verify develop is up to date with origin before starting next chunk
   Verify: Run `git status -sb | head -2` -> expect `## develop...origin/develop` with no `ahead` or `behind` count
 - [ ] P1-024 Update progress milestones M0 and M1 as done in the same PR
   Verify: Run `grep -n "M0.*done\|M1.*done\|M0.*complete\|M1.*complete" docs/progress.md | head -10` -> expect M0 and M1 marked done or complete
