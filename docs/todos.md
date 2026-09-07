@@ -551,41 +551,41 @@ Scope: server, data stores, auth, OAuth, AI, payments, messaging, maps/AWS, obse
 | Maps+AWS | GOOGLE_MAPS_KEY, AWS_*, bucket | P4-013 |
 | Observability | LOG_LEVEL, SENTRY_DSN | P4-014 |
 
-- [ ] P4-001 Set server core variables NODE_ENV PORT CLIENT_URL API_VERSION per (docs/env.md S3)
+- [x] P4-001 Set server core variables NODE_ENV PORT CLIENT_URL API_VERSION per (docs/env.md S3)
   Verify: Run `grep -E "NODE_ENV|PORT|CLIENT_URL|API_VERSION" .env.example` -> shows all four lines
-- [ ] P4-002 Set Postgres group DATABASE_URL plus pool min/max per (docs/env.md S4)
+- [x] P4-002 Set Postgres group DATABASE_URL plus pool min/max per (docs/env.md S4)
   Verify: Run `grep DATABASE_URL .env.example` -> shows postgresql:// URL entry
-- [ ] P4-003 Set Redis group REDIS_URL per (docs/env.md S4)
+- [x] P4-003 Set Redis group REDIS_URL per (docs/env.md S4)
   Verify: Run `grep REDIS_URL .env.example` -> shows redis://localhost:6379 entry
-- [ ] P4-004 Set Elasticsearch group ELASTICSEARCH_URL plus index name per (docs/env.md S4)
+- [x] P4-004 Set Elasticsearch group ELASTICSEARCH_URL plus index name per (docs/env.md S4)
   Verify: Run `grep ELASTICSEARCH_URL .env.example` -> shows http://localhost:9200 entry
-- [ ] P4-005 Set ClickHouse group CLICKHOUSE_URL DB USER per (docs/env.md S4)
+- [x] P4-005 Set ClickHouse group CLICKHOUSE_URL DB USER per (docs/env.md S4)
   Verify: Run `grep CLICKHOUSE_URL .env.example` -> shows http://localhost:8123 entry
-- [ ] P4-006 Set auth JWT group JWT_SECRET JWT_EXPIRES_IN REFRESH_SECRET REFRESH_EXPIRES_IN per (docs/env.md S5)
+- [x] P4-006 Set auth JWT group JWT_SECRET JWT_EXPIRES_IN REFRESH_SECRET REFRESH_EXPIRES_IN per (docs/env.md S5)
   Verify: Run `grep JWT_SECRET .env.example` -> shows JWT_SECRET entry with 32+ char placeholder
-- [ ] P4-007 Set Google OAuth group GOOGLE_CLIENT_ID SECRET CALLBACK per (docs/env.md S5)
+- [x] P4-007 Set Google OAuth group GOOGLE_CLIENT_ID SECRET CALLBACK per (docs/env.md S5)
   Verify: Run `grep GOOGLE_CLIENT_ID .env.example` -> shows client id entry
-- [ ] P4-008 Set OpenAI group OPENAI_API_KEY OPENAI_MODEL per (docs/env.md S6)
+- [x] P4-008 Set OpenAI group OPENAI_API_KEY OPENAI_MODEL per (docs/env.md S6)
   Verify: Run `grep OPENAI_API_KEY .env.example` -> shows sk- placeholder entry
-- [ ] P4-009 Set Pinecone group PINECONE_API_KEY PINECONE_INDEX PINECONE_ENV per (docs/env.md S6)
+- [x] P4-009 Set Pinecone group PINECONE_API_KEY PINECONE_INDEX PINECONE_ENV per (docs/env.md S6)
   Verify: Run `grep PINECONE_API_KEY .env.example` -> shows Pinecone key entry
-- [ ] P4-010 Set Stripe group STRIPE_SECRET_KEY STRIPE_WEBHOOK_SECRET STRIPE_CONNECT_CLIENT per (docs/env.md S7)
+- [x] P4-010 Set Stripe group STRIPE_SECRET_KEY STRIPE_WEBHOOK_SECRET STRIPE_CONNECT_CLIENT per (docs/env.md S7)
   Verify: Run `grep STRIPE_SECRET_KEY .env.example` -> shows sk_test_ placeholder entry
-- [ ] P4-011 Set SendGrid group SENDGRID_API_KEY SENDGRID_FROM_EMAIL per (docs/env.md S8)
+- [x] P4-011 Set SendGrid group SENDGRID_API_KEY SENDGRID_FROM_EMAIL per (docs/env.md S8)
   Verify: Run `grep SENDGRID_API_KEY .env.example` -> shows SG. placeholder entry
-- [ ] P4-012 Set Twilio and FCM group TWILIO_ACCOUNT_SID TWILIO_AUTH_TOKEN TWILIO_PHONE FIREBASE_SERVER_KEY per (docs/env.md S8)
+- [x] P4-012 Set Twilio and FCM group TWILIO_ACCOUNT_SID TWILIO_AUTH_TOKEN TWILIO_PHONE FIREBASE_SERVER_KEY per (docs/env.md S8)
   Verify: Run `grep TWILIO_ACCOUNT_SID .env.example` -> shows AC placeholder entry
-- [ ] P4-013 Set Maps and AWS group GOOGLE_MAPS_KEY AWS_ACCESS_KEY AWS_SECRET_KEY AWS_BUCKET_NAME AWS_REGION per (docs/env.md S8)
+- [x] P4-013 Set Maps and AWS group GOOGLE_MAPS_KEY AWS_ACCESS_KEY AWS_SECRET_KEY AWS_BUCKET_NAME AWS_REGION per (docs/env.md S8)
   Verify: Run `grep AWS_BUCKET_NAME .env.example` -> shows bucket entry
-- [ ] P4-014 Set observability group LOG_LEVEL SENTRY_DSN per (docs/env.md S9)
+- [x] P4-014 Set observability group LOG_LEVEL SENTRY_DSN per (docs/env.md S9)
   Verify: Run `grep LOG_LEVEL .env.example` -> shows LOG_LEVEL entry
-- [ ] P4-015 Set feature-flag and tuning group ENABLE_SEMANTIC_SEARCH CART_TTL_MIN per (docs/env.md S10)
+- [x] P4-015 Set feature-flag and tuning group ENABLE_SEMANTIC_SEARCH CART_TTL_MIN per (docs/env.md S10)
   Verify: Run `grep ENABLE_SEMANTIC_SEARCH .env.example` -> shows flag entry
 - [x] P4-016 Verify .env.example template has all groups with placeholder values per (docs/env.md S13)
   Verify: Run `test -f .env.example && grep -c "=" .env.example` -> count 25 or more lines with =
-- [ ] P4-017 Verify src/config/env.ts Zod schema validates every .env.example key per (docs/env.md S12)
+- [x] P4-017 Verify src/config/env.ts Zod schema validates every .env.example key per (docs/env.md S12)
   Verify: Run `test -f src/config/env.ts && grep -q "z.object" src/config/env.ts` -> exit 0
-- [ ] P4-018 Add boot fail-fast test that exits non-zero when required env is missing per (docs/env.md S12)
+- [x] P4-018 Add boot fail-fast test that exits non-zero when required env is missing per (docs/env.md S12)
   Verify: Run `npm test -- env.failfast.test.ts` -> shows 1 passed fail-fast case
 
 Example .env.example snippet expected after P4-016:
